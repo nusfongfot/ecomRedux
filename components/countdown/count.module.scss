@@ -1,0 +1,26 @@
+.countdown {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  span {
+    background: #333;
+    color: white;
+    padding: 5px;
+    font-size: 27px;
+    border-radius: 0.5rem;
+  }
+  b {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .countdown {
+    span {
+      font-size: 20px;
+    }
+    b {
+      font-size: 14px;
+    }
+  }
+}

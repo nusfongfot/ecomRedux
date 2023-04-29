@@ -1,0 +1,17 @@
+.swiperSimilar {
+  margin-top: 20px;
+  max-width: 550px;
+  .swiper-pagination {
+    display: none !important;
+  }
+  img {
+    width: 100px;
+    height: 160px;
+    object-fit: cover;
+    cursor: pointer;
+    @media (min-width: 461px) {
+      width: 150px;
+      height: 200px;
+    }
+  }
+}

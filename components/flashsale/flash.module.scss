@@ -1,0 +1,57 @@
+.flashContent {
+  display: flex;
+  background-color: yellow;
+  color: black;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card {
+  width: 100%;
+  height: auto;
+  color: black;
+}
+
+.cardImg {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.cardPrice {
+  display: flex;
+  position: absolute;
+  top: 50;
+  bottom: 10px;
+  background-color: yellow;
+  padding: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  color: red;
+}
+
+.flash {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: yellow;
+  padding: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .flash {
+    font-size: 12px;
+    padding: 2px;
+  }
+  .cardPrice {
+    padding: 2px;
+    font-size: 13px;
+  }
+}

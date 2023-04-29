@@ -1,0 +1,13 @@
+.listItem {
+  height: 75vh;
+}
+
+@media screen and (max-width: 992px) {
+  .textList {
+    display: none;
+  }
+  .listItem {
+    display: flex !important;
+    height: auto;
+  }
+}

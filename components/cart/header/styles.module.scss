@@ -1,0 +1,37 @@
+.header {
+//   border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  padding: 13px 0;
+  &_container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &_left {
+    display: flex;
+    align-items: center;
+    img {
+      height: 35px;
+      cursor: pointer;
+    }
+  }
+  &_right {
+    a {
+        display: flex;
+        align-items: center;
+    }
+    svg {
+        width: 13px;
+        height: 13px;
+    }
+    &:hover {
+        text-decoration: underline;
+        color: yellow;
+    }
+  }
+}

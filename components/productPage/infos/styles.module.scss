@@ -1,0 +1,116 @@
+.infos {
+  // background-color: #ffffff;
+  // color: #666;
+  @media (max-width: 840px) {
+    padding-top: 1rem !important;
+  }
+  @media (max-width: 840px) {
+    max-width: 340px;
+  }
+  &_rating {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  &_price {
+    color: #fa6338;
+    display: flex;
+    align-items: center;
+  }
+  &_shipping {
+    display: block;
+    color: rgb(110, 110, 229);
+  }
+  &_sizes {
+    margin-top: 1rem;
+    &_wrap {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+    }
+    &_size {
+      display: flex;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      place-items: center;
+      border: 1px solid #e6e6e6;
+      cursor: pointer;
+      &:hover {
+        color: black;
+        background-image: linear-gradient(
+          to top,
+          #fee7e9 0%,
+          #e3eeff 99%,
+          #e3eeff 100%
+        );
+      }
+    }
+  }
+  &_colors {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 1rem;
+    span {
+      display: grid;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+      &:hover {
+        outline: 1px solid #ffffff;
+        outline-offset: 2px;
+      }
+    }
+  }
+  &_qty {
+    margin-top: 1rem;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &_actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 15px;
+  }
+}
+
+.active_size {
+  color: black;
+  background-image: linear-gradient(
+    to top,
+    #fee7e9 0%,
+    #e3eeff 99%,
+    #e3eeff 100%
+  );
+}
+
+.active_color {
+  outline: 1px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.line {
+  margin-right: 10px;
+  text-decoration: line-through;
+  color: white;
+}
+
+.error {
+  font-size: 18px;
+  color: red;
+  font-weight: 700;
+  margin-top: 20px !important;
+}

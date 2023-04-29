@@ -1,0 +1,47 @@
+.main {
+  background-image: url("/images/flash.webp");
+  width: 100%;
+  overflow: hidden;
+  background-position: -220px -105px;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.offerSwiper {
+  max-width: 550px;
+  transform: translateX(35%);
+  color: black;
+}
+
+.imgOff {
+  z-index: -1;
+}
+
+.price {
+  position: absolute;
+  top: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: yellow;
+  border-radius: 0.5rem;
+  padding: 5px 10px;
+  font-weight: 700;
+}
+
+.discount {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 0, 0);
+  border-radius: 0.5rem;
+  padding: 5px 10px;
+  font-weight: 700;
+  color: white;
+}
