@@ -1,13 +1,13 @@
 import DotLoading from "@/components/loader/dotloader/dotloader";
 import SignUp from "@/components/signup/signup";
-import { useLoading } from "@/contexts/loadingContext";
+import { useLoadingStore } from "@/zustand/loadingStore";
 
 function SignUpPage() {
-  const { loading } = useLoading();
+  const { isLoading } = useLoadingStore();
 
   return (
     <>
-      {loading && <DotLoading />}
+      {isLoading ? <DotLoading /> : null}
       <SignUp />
     </>
   );

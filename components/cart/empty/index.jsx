@@ -15,7 +15,7 @@ function EmptyCart() {
         Cart is Empty
       </Typography>
       {session ? (
-        <Link href={"/browse"}>
+        <Link href={"/"}>
           <Button
             variant="contained"
             sx={{ mt: 2, width: "300px", height: "50px" }}

@@ -2,16 +2,16 @@ import Head from "next/head";
 import axios from "axios";
 import { useSession, signIn, signOut } from "next-auth/react";
 import DotLoading from "@/components/loader/dotloader/dotloader";
-import { useLoading } from "@/contexts/loadingContext";
 import Header from "@/components/header/header";
 import Main from "@/components/main/index";
 import { connectDb } from "@/utils/db";
 import ProductModel from "@/models/Product";
 import { Box, Container } from "@mui/material";
 import ProductCard from "@/components/productCard";
+import { useLoadingStore } from "@/zustand/loadingStore";
 
 export default function Home({ country, products }) {
-  const { loading } = useLoading();
+  const { isLoading } = useLoadingStore();
 
   return (
     <>
@@ -21,7 +21,7 @@ export default function Home({ country, products }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {loading ? <DotLoading /> : null}
+      {isLoading ? <DotLoading /> : null}
       <Header country={country} />
       <Main />
       <Container maxWidth="xl">

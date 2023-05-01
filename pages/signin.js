@@ -1,10 +1,10 @@
 import DotLoading from "@/components/loader/dotloader/dotloader";
 import SignIn from "@/components/signin/signin";
-import { useLoading } from "@/contexts/loadingContext";
+import { useLoadingStore } from "@/zustand/loadingStore";
 import { getProviders, useSession } from "next-auth/react";
 
 function SigninPage({ providers }) {
-  const { loading } = useLoading();
+  const { isLoading } = useLoadingStore();
   const { data: session } = useSession();
 
   if (session?.user) {
@@ -16,7 +16,7 @@ function SigninPage({ providers }) {
 
   return (
     <>
-      {loading && <DotLoading />}
+      {isLoading && <DotLoading />}
       <SignIn providers={providers} />
     </>
   );

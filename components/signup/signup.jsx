@@ -12,8 +12,8 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { successToast, errorToast } from "@/utils/notification";
-import { useLoading } from "@/contexts/loadingContext";
 import * as AuthAPI from "@/API/authAPI";
+import { useLoadingStore } from "@/zustand/loadingStore";
 
 const theme = createTheme();
 
@@ -26,7 +26,7 @@ const initialData = {
 
 export default function SignUp() {
   const router = useRouter();
-  const { startLoading, stopLoading } = useLoading();
+  const { startLoading, stopLoading } = useLoadingStore();
   const [showPassword, setShowPassword] = useState(false);
   const [values, setValues] = useState(initialData);
   const [errors, setErrors] = useState({

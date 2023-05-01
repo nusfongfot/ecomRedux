@@ -19,8 +19,8 @@ import google from "@/public/icons/google.png";
 import { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import * as AuthAPI from "@/API/authAPI";
-import { useLoading } from "@/contexts/loadingContext";
 import { errorToast, successToast } from "@/utils/notification";
+import { useLoadingStore } from "@/zustand/loadingStore";
 
 const theme = createTheme();
 
@@ -33,7 +33,7 @@ export default function SignIn({ providers }) {
   const router = useRouter();
   const { data: session } = useSession();
 
-  const { startLoading, stopLoading } = useLoading();
+  const { startLoading, stopLoading } = useLoadingStore();
   const [showPassword, setShowPassword] = useState(false);
   const [values, setValues] = useState(initialData);
   const [errors, setErrors] = useState({

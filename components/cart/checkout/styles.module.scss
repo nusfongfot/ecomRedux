@@ -1,0 +1,33 @@
+@import "../base";
+
+.cart {
+  &_checkout {
+    background: rgb(63, 58, 58) !important;
+    max-height: 300px;
+    &_line {
+      font-size: 14px !important;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      span {
+        font-size: 18px;
+      }
+    }
+    &_total {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 17px !important;
+      border-top: 1px solid #ccc;
+      padding: 1rem 0;
+      margin-top: 1rem;
+    }
+  }
+}
+
+.submit {
+    margin-top: 2rem;
+}
+
+

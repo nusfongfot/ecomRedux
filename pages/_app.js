@@ -6,7 +6,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import LoadingContextProvider from "@/contexts/loadingContext";
 
 let persistor = persistStore(store);
 export default function App({
@@ -16,14 +15,12 @@ export default function App({
   return (
     <>
       <SessionProvider session={session}>
-        <LoadingContextProvider>
-          <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-              <Component {...pageProps} />
-              <ToastContainer />
-            </PersistGate>
-          </Provider>
-        </LoadingContextProvider>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <Component {...pageProps} />
+            <ToastContainer />
+          </PersistGate>
+        </Provider>
       </SessionProvider>
     </>
   );

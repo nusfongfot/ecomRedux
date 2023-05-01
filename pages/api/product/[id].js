@@ -23,7 +23,7 @@ handler.get(async (req, res) => {
       slug: product.slug,
       sku: product.subProducts[style]?.sku,
       brand: product.brand,
-      shipping: product.brand,
+      shipping: product.shipping,
       images: product.subProducts[style]?.images,
       color: product.subProducts[style]?.color,
       size:product.subProducts[style]?.sizes[size]?.size,

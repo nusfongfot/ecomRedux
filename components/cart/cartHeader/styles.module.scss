@@ -1,0 +1,24 @@
+@import "../base";
+
+.cart_header {
+  background: rgb(63, 58, 58) !important;
+  height: 100px;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid #cccccc;
+  cursor: pointer;
+  &:hover {
+    border-color: blue;
+  }
+}

@@ -11,10 +11,13 @@ import SimilarSwiper from "./similarSwiper";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, updateCart } from "@/store/cartSlice";
+import { useCartStore } from "@/zustand/cartStore";
 
 function Infos({ product, setActiveImg }) {
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const { cartItems, addToCartStore, updateCartStore } = useCartStore();
 
   const [size, setSize] = useState(router.query.size);
   const [qty, setQty] = useState(1);
@@ -40,18 +43,20 @@ function Infos({ product, setActiveImg }) {
       setError("The Product is out of stock");
     } else {
       let _uid = `${data._id}_${product.style}_${router.query.size}`;
-      let exist = cart.cartItems.find((p) => p._uid === _uid);
+      let exist = cartItems.find((p) => p._uid === _uid);
       if (exist) {
         //update
-        let newCart = cart.cartItems.map((p) => {
-          if(p._uid == exist._uid) {
-            return { ...p, qty}
+        let newCart = cartItems.map((p) => {
+          if (p._uid == exist._uid) {
+            return { ...p, qty };
           }
-          return p
-        })
-        dispatch(updateCart(newCart))
+          return p;
+        });
+        // dispatch(updateCart(newCart));
+        updateCartStore(newCart);
       } else {
-        dispatch(addToCart({ ...data, qty, size: data.size, _uid }));
+        // dispatch(addToCart({ ...data, qty, size: data.size, _uid }));
+        addToCartStore({ ...data, qty, size: data.size, _uid });
       }
     }
   };
@@ -99,18 +104,13 @@ function Infos({ product, setActiveImg }) {
           {product.discount > 0 ? (
             <Typography variant="h5">
               {size && (
-                <Box component={"span"} className={styles.line}>
+                <Typography variant="caption" className={styles.line}>
                   {product.priceBefore}
-                </Box>
+                </Typography>
               )}
               (-{product.discount}%)
             </Typography>
           ) : null}
-        </Box>
-        <Box component={"span"} className={styles.infos_shipping}>
-          {product.shipping
-            ? `+${product.shipping} $ Shipping fee`
-            : "Free Shipping"}
         </Box>{" "}
         <Box component={"span"}>
           {size
