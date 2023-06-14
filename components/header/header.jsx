@@ -253,7 +253,7 @@ export default function Header({ country }) {
               color="inherit"
             ></IconButton>
             <Box sx={{ display: "flex", alignItems: "center", gap: "5px" }}>
-              <Typography>{country.name}</Typography>
+              <Typography>{country?.name}</Typography>
               {/* <Image width={20} height={20} src={country.flag} alt="thai" /> */}
             </Box>
             {session ? (
