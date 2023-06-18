@@ -2,20 +2,23 @@ import nc from "next-connect";
 import { connectDb, disconnectDb } from "@/utils/db";
 import ProductModel from "@/models/Product";
 import CartModel from "@/models/Cart";
-import User from "@/models/User";
+import UserModel from "@/models/User";
+import auth from "@/middleware/auth";
 
-const handler = nc();
+const handler = nc().use(auth);
 
 handler.post(async (req, res) => {
   try {
     connectDb();
-    const { cart, user_id } = req.body;
+    const { cart } = req.body;
     let products = [];
-    let user = await User.findById(user_id);
+    let user = await UserModel.findById(req.user);
     let existting_cart = await CartModel.findOne({ user: user._id });
+
     if (existting_cart) {
       await existting_cart.remove();
     }
+
     for (let i = 0; i < cart.length; i++) {
       let dbProduct = await ProductModel.findById(cart[i]._id).lean();
       let subProduct = dbProduct.subProducts[cart[i].style];
@@ -43,13 +46,21 @@ handler.post(async (req, res) => {
     for (let i = 0; i < products.length; i++) {
       cartTotal += products[i].price * products[i].qty;
     }
+
+    // const newCart = new CartModel({
+    //   products,
+    //   cartTotal: cartTotal.toFixed(2),
+    //   user: user._id,
+    // });
+    // await newCart.save();
+
     await new CartModel({
       products,
       cartTotal: cartTotal.toFixed(2),
-      user: user_id,
+      user: user._id,
     }).save();
-
     disconnectDb();
+    return res.status(200).json();
   } catch (error) {
     return res.status(500).json({ msg: error.message });
   }

@@ -13,7 +13,7 @@ export const useCartStore = create(
     }),
     {
       name: "cart-store",
-      storage: createJSONStorage(() => sessionStorage),
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

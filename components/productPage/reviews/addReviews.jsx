@@ -18,7 +18,7 @@ function AddReviews({ product }) {
 
   const handleImages = (e) => {
     let files = Array.from(e.target.files);
-    files.forEach((img, i) => {
+    files?.forEach((img, i) => {
       if (images.length == 3 || i == 2) {
         alert("Maximum 3 images are allowed !");
       }
@@ -43,7 +43,6 @@ function AddReviews({ product }) {
       }
     });
   };
-
   const removeImg = (image) => {
     setImages((images) => images.filter((img) => img !== image));
   };

@@ -1,0 +1,36 @@
+.summary {
+  margin-top: 1rem;
+  .coupon {
+    margin-top: 10px;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .infos {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      span {
+        background-color: #eeeeee57;
+        padding: 5px;
+        font-size: 18px;
+        border: 1px solid #ccccc1;
+        &:last-of-type {
+          b {
+            font-size: 20px;
+          }
+        }
+      }
+      .coupon_span {
+        background: green;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.discount {
+  background-color: green;
+}

@@ -1,13 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import styles from "./styles.module.scss";
 
-function Checkout({
-  subtotal,
-  shippingFee,
-  total,
-  selected,
-  saveCartToDb,
-}) {
+function Checkout({ subtotal, shippingFee, total, selected, saveCartToDb }) {
   return (
     <Box className={`${styles.cart_checkout} ${styles.card}`}>
       <Typography variant="h5">Order Summary</Typography>

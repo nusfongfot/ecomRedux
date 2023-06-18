@@ -35,10 +35,16 @@ const UserSchema = new mongoose.Schema(
     },
     address: [
       {
-        fullname: {
+        firstName: {
           type: String,
         },
-        phone: {
+        lastName: {
+          type: String,
+        },
+        phoneNumber: {
+          type: String,
+        },
+        state: {
           type: String,
         },
         address1: {

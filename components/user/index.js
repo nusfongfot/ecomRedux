@@ -1,6 +1,4 @@
 function User() {
-  return (
-    <div>User</div>
-  )
+  return <div>USER</div>;
 }
-export default User
+export default User;

@@ -73,7 +73,7 @@ export default function SignIn({ providers }) {
         startLoading();
         await AuthAPI.login(values);
         successToast("Login Succesfully", 1000);
-        router.push("/");
+        router.replace("/");
       }
       stopLoading();
     } catch (error) {
@@ -82,12 +82,6 @@ export default function SignIn({ providers }) {
       }
       stopLoading();
     }
-  };
-
-  const onSignInClickHandler = () => {
-    signIn("google", {
-      callbackUrl: "/",
-    });
   };
 
   useEffect(() => {
@@ -219,8 +213,10 @@ export default function SignIn({ providers }) {
                   }}
                   variant="contained"
                   onClick={() => {
-                    signIn(provider.id);
-                    onSignInClickHandler();
+                    signIn(provider.id, {
+                      redirect: false,
+                      callbackUrl: "/",
+                    });
                   }}
                 >
                   <Image height={20} width={20} src={google} alt="google" />

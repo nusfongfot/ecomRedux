@@ -75,6 +75,7 @@ function Infos({ product, setActiveImg }) {
   useEffect(() => {
     checkQuantity();
   }, [router.query.size]);
+  console.log("addCart", cartItems);
 
   return (
     <Box className={styles.infos}>

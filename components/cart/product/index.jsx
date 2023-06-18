@@ -5,10 +5,21 @@ import { BsHeart } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useCartStore } from "@/zustand/cartStore";
+import { updateCart } from "@/store/cartSlice";
 
 function Product({ product, setSelected, selected }) {
   const { cartItems, updateCartStore } = useCartStore();
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState({});
+  const [isClick, setIsClick] = useState(false);
+
+  const handleSelected = () => {
+    if (active) {
+      const filter = selected.filter((p) => p._uid != product._uid);
+      setSelected(filter);
+    } else {
+      setSelected([...selected, product]);
+    }
+  };
 
   const updateQty = (type) => {
     let newCart = cartItems.map((p) => {
@@ -28,17 +39,13 @@ function Product({ product, setSelected, selected }) {
     updateCartStore(newCart);
   };
 
-  const handleSelected = () => {
-    if (active) {
-      const filter = selected.filter((p) => p._uid != product._uid);
-      setSelected(filter);
-    } else {
-      setSelected([...selected, product]);
-    }
-  };
-
   useEffect(() => {
     const check = selected.find((p) => p._uid == product._uid);
+    if (check) {
+      setIsClick(true);
+    } else {
+      setIsClick(false);
+    }
     setActive(check);
   }, [selected]);
 
@@ -100,7 +107,7 @@ function Product({ product, setSelected, selected }) {
 
             <Box className={styles.product_priceQty_qty}>
               <Button
-                disabled={product.qty < 2}
+                disabled={product.qty < 2 || isClick}
                 variant="contained"
                 onClick={() => updateQty("minus")}
               >
@@ -108,7 +115,7 @@ function Product({ product, setSelected, selected }) {
               </Button>
               <span>{product.qty}</span>
               <Button
-                disabled={product.qty == product.quantity}
+                disabled={product.qty == product.quantity || isClick}
                 variant="contained"
                 onClick={() => updateQty("plus")}
               >

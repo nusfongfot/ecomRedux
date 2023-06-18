@@ -31,9 +31,7 @@ const cartSchema = new mongoose.Schema(
           color: String,
           image: String,
         },
-        price: {
-          color: Number,
-        },
+        price: Number,
       },
     ],
     cartTotal: Number,
