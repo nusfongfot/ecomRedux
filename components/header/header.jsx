@@ -19,8 +19,11 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { Button } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import Link from "next/link";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useCartStore } from "@/zustand/cartStore";
+import { errorToast } from "@/utils/notification";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -66,6 +69,7 @@ export default function Header({ country }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const { cartItems } = useCartStore();
 
   const router = useRouter();
   const { data: session } = useSession();
@@ -236,16 +240,31 @@ export default function Header({ country }) {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box
-            sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
+            sx={{
+              display: { xs: "none", md: "flex" },
+              alignItems: "center",
+            }}
           >
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <FavoriteIcon />
-              <Typography>Wishlist</Typography>
-            </IconButton>
+            {session && (
+              <Stack flexDirection={"row"} gap={2}>
+                <Badge
+                  sx={{ cursor: "pointer" }}
+                  badgeContent={cartItems.length}
+                  color="secondary"
+                  onClick={() => router.push("/cart")}
+                >
+                  <ShoppingCartIcon />
+                </Badge>
+
+                <Badge
+                  sx={{ cursor: "pointer" }}
+                  badgeContent={4}
+                  color="secondary"
+                >
+                  <FavoriteIcon />
+                </Badge>
+              </Stack>
+            )}
 
             <IconButton
               size="large"

@@ -1,5 +1,5 @@
 import { ErrorMessage, useField } from "formik";
-import styles from "./styles.module.scss";
+import styles from "../styles.module.scss";
 import { Box, FormHelperText, TextField, styled } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 

@@ -8,15 +8,15 @@ export const sidebarData = [
       },
       {
         name: "Addresses",
-        link: "/profile/address",
+        link: "/profile",
       },
       {
         name: "My Payment Options",
-        link: "/profile/payment",
+        link: "/profile",
       },
       {
         name: "Account Security",
-        link: "/profile/security",
+        link: "/profile",
       },
     ],
   },

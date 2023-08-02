@@ -6,8 +6,12 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
 import { MdOutlineRemove } from "react-icons/md";
+import { errorToast } from "@/utils/notification";
+import dataURItoBlob from "@/utils/dataURItoBlob";
+import { uploadImages } from "@/API/user";
+import axios from "axios";
 
-function AddReviews({ product }) {
+function AddReviews({ product, setReviews }) {
   const [style, setStyle] = useState("");
   const [review, setReview] = useState("");
   const [rating, setRating] = useState();
@@ -15,6 +19,7 @@ function AddReviews({ product }) {
 
   const [images, setImages] = useState("");
   const imgRef = useRef();
+  let uploaded_images = [];
 
   const handleImages = (e) => {
     let files = Array.from(e.target.files);
@@ -57,6 +62,67 @@ function AddReviews({ product }) {
 
   const handleOnChangeReview = (event) => {
     setReview(event.target.value);
+  };
+
+  const handleSubmit = async () => {
+    let msgs = [];
+    if (!size) {
+      msgs.push({
+        msg: "Please select a size!",
+        type: "error",
+      });
+    }
+    if (!style) {
+      msgs.push({
+        msg: "Please select a style!",
+        type: "error",
+      });
+    }
+
+    if (!rating) {
+      msgs.push({
+        msg: "Please select a rating!",
+        type: "error",
+      });
+    }
+    if (!review) {
+      msgs.push({
+        msg: "Please select a review!",
+        type: "error",
+      });
+    }
+    if (msgs.length > 0) {
+      const object = msgs.map((item) => item.msg);
+      const str = object.toString();
+      errorToast(str, 2000);
+      console.log("msgs", str);
+    } else {
+      if (images.length > 0) {
+        let temp = images.map((img) => {
+          return dataURItoBlob(img);
+        });
+        const path = "reviews images";
+        let formData = new FormData();
+        formData.append("path", path);
+        temp.forEach((img) => {
+          formData.append("file", img);
+        });
+        uploaded_images = await uploadImages(formData);
+      }
+      const { data } = axios.put(`/api/product/${product._id}/review`, {
+        size,
+        style,
+        rating,
+        review,
+        images: uploadImages,
+        // reviewBy,
+      });
+      setReviews(data.reviews);
+      setStyle("");
+      setSize("");
+      setImages([]);
+      setRating("");
+    }
   };
 
   return (
@@ -160,7 +226,7 @@ function AddReviews({ product }) {
           precision={0.5}
           style={{ color: "#facf19", fontSize: "3rem" }}
         />
-        <Button variant="contained" fullWidth>
+        <Button variant="contained" fullWidth onClick={() => handleSubmit()}>
           Submit
         </Button>
       </Box>

@@ -9,9 +9,15 @@ import ProductModel from "@/models/Product";
 import { Box, Container } from "@mui/material";
 import ProductCard from "@/components/productCard";
 import { useLoadingStore } from "@/zustand/loadingStore";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function Home({ country, products }) {
   const { isLoading } = useLoadingStore();
+  const router = useRouter();
+  const { data: session } = useSession();
+
+  
 
   return (
     <>

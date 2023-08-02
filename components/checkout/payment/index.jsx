@@ -25,13 +25,11 @@ export default function PaymentMethod({ paymentMethod, setPaymentMethod }) {
 
           <Box className={styles.payment_item_col}>
             <p>Pay With {pm.name}</p>
-            <span>
-              {pm.images.length > 0
-                ? pm.images.map((item) => (
-                    <img src={`images/payment/${item}.webp`} alt={item} />
-                  ))
-                : pm.description}
-            </span>
+            {pm.images.length > 0
+              ? pm.images.map((item) => (
+                  <img src={`images/payment/${item}.webp`} alt={item} />
+                ))
+              : pm.description}
           </Box>
         </label>
       ))}

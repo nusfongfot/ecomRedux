@@ -1,6 +1,9 @@
 .input {
   width: 100%;
   margin-bottom: 1.2rem;
+  input {
+    background: white;
+  }
   // margin-top: 20px;
   &_wrapper {
     position: relative;
@@ -30,7 +33,7 @@
 
 .error {
   input {
-    background: rgb(243, 201, 201) !important;
+    background: rgb(243, 201, 201);
     border: 1px solid #cc674f;
   }
   p {

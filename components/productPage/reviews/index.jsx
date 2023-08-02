@@ -4,9 +4,11 @@ import { useRouter } from "next/router";
 import AddReviews from "./addReviews";
 import styles from "./styles.module.scss";
 import Tables from "./Tables";
+import { useState } from "react";
 
 function Reviews({ product }) {
   const { data: session } = useSession();
+  const [reviews, setReviews] = useState(product.review)
   const router = useRouter();
   return (
     <Box mt={8} className={styles.reviews}>
@@ -56,7 +58,7 @@ function Reviews({ product }) {
           </Box>
         </Box>
         {session ? (
-          <AddReviews product={product} />
+          <AddReviews product={product} setReviews={setReviews} />
         ) : (
           <Button
             onClick={() => router.push("/signin")}

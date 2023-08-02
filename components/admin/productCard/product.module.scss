@@ -1,0 +1,22 @@
+.product {
+  &_actions {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    svg {
+      width: 25px;
+      height: 25px;
+    //   &:nth-of-type(1) {
+    //     stroke: blue;
+    //   }
+    //   &:nth-of-type(2) {
+    //     stroke: green;
+    //   }
+    //   &:nth-of-type(3) {
+    //     stroke: red;
+    //   }
+    }
+  }
+}

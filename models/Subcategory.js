@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const { ObjectId } = mongoose.Schema;
 
-const subcateSchema = new mongoose.Schema({
+const subSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    minlength: [2, , "must be atleast two characters"],
-    maxlength: [32, , "must be 32 characters"],
+    minlength: [2, "must be atleast 2 charcters"],
+    maxlength: [32, "must be atleast 2 charcters"],
   },
   slug: {
     type: String,
@@ -23,6 +23,6 @@ const subcateSchema = new mongoose.Schema({
 });
 
 const SubCategory =
-  mongoose.models.SubCategory || mongoose.model("SubCategory", subcateSchema);
+  mongoose.models.SubCategory || mongoose.model("SubCategory", subSchema);
 
 export default SubCategory;

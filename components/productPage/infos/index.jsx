@@ -12,12 +12,15 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, updateCart } from "@/store/cartSlice";
 import { useCartStore } from "@/zustand/cartStore";
+import { errorToast, successToast } from "@/utils/notification";
+import { useSession } from "next-auth/react";
 
 function Infos({ product, setActiveImg }) {
   const router = useRouter();
   const dispatch = useDispatch();
 
   const { cartItems, addToCartStore, updateCartStore } = useCartStore();
+  const { data: session } = useSession();
 
   const [size, setSize] = useState(router.query.size);
   const [qty, setQty] = useState(1);
@@ -53,9 +56,11 @@ function Infos({ product, setActiveImg }) {
           return p;
         });
         // dispatch(updateCart(newCart));
+        errorToast("This is item is already exist", 1500);
         updateCartStore(newCart);
       } else {
         // dispatch(addToCart({ ...data, qty, size: data.size, _uid }));
+        successToast("Add to cart successfully!", 1500);
         addToCartStore({ ...data, qty, size: data.size, _uid });
       }
     }
@@ -64,6 +69,22 @@ function Infos({ product, setActiveImg }) {
   const checkQuantity = () => {
     if (qty > product.quantity) {
       setQty(product.quantity);
+    }
+  };
+
+  const handleWishList = async () => {
+    try {
+      if (!session) {
+        return signIn();
+      }
+      const { data } = await axios.put("/api/user/wishlist", {
+        product_id: product._id,
+        style: product.style,
+      });
+      successToast(data.message, 1500);
+    } catch (error) {
+      console.log(error);
+      errorToast(error.message, 2000);
     }
   };
 
@@ -205,6 +226,7 @@ function Infos({ product, setActiveImg }) {
               },
             }}
             fullWidth
+            onClick={handleWishList}
           >
             <BsHeart />
             <Box component={"b"}>Wishlist</Box>

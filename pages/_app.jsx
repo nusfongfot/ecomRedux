@@ -5,6 +5,7 @@ import store from "@/store/index";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import { ToastContainer } from "react-toastify";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import "react-toastify/dist/ReactToastify.css";
 
 let persistor = persistStore(store);
@@ -15,12 +16,14 @@ export default function App({
   return (
     <>
       <SessionProvider session={session}>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <Component {...pageProps} />
-            <ToastContainer />
-          </PersistGate>
-        </Provider>
+        <PayPalScriptProvider>
+          <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+              <Component {...pageProps} />
+              <ToastContainer />
+            </PersistGate>
+          </Provider>
+        </PayPalScriptProvider>
       </SessionProvider>
     </>
   );
